@@ -1,4 +1,6 @@
-﻿namespace Labyrinthe
+﻿using System.Net.Http.Headers;
+
+namespace Labyrinthe
 {
     internal class Controller
     {
@@ -14,34 +16,29 @@
         {
             while (true)
             {
-                if(labyrinthe.IsExit())
+                if (labyrinthe.IsExit())
+                {
                     view.AfficherVictoire();
+                    break;
+                }
                 view.AfficherEntete();
                 view.AfficherLabyrinthe(labyrinthe);
-                Console.WriteLine("Haut, bas, gauche ou droite (W-A-S-D)");
-                char choix;
-                while (true)
+                ConsoleKey key = Console.ReadKey().Key;
+                switch (key)
                 {
-                    try
-                    {
-                        choix = Convert.ToChar(Console.ReadLine());
-                        if (choix == 'W' || choix == 'S' || choix == 'A' || choix == 'D')
+                    case ConsoleKey.UpArrow:
+                        labyrinthe.MoveUp();
                         break;
-                        throw new Exception();
-                    }
-                    catch(Exception)
-                    {
-                        Console.WriteLine("Touche incorrecte");
-                    } 
+                    case ConsoleKey.DownArrow:
+                        labyrinthe.MoveDown();
+                        break;
+                    case ConsoleKey.LeftArrow:
+                        labyrinthe.MoveLeft();
+                        break;
+                    case ConsoleKey.RightArrow:
+                        labyrinthe.MoveRight();
+                        break;
                 }
-                if (choix == 'W')
-                    labyrinthe.MoveUp();
-                else if (choix =='A')
-                    labyrinthe.MoveLeft();
-                else if (choix == 'S')
-                    labyrinthe.MoveDown();
-                else if (choix == 'D')
-                    labyrinthe.MoveRight();
             }            
         }
     }

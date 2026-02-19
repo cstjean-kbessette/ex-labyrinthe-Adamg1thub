@@ -27,10 +27,6 @@
         };
         public int posX { get; set; } = 1;
         public int posY { get; set; } = 1;
-        public Labyrinthe()
-        {
-            
-        }
         public void MoveUp()
         {
             if (Map[posY -1, posX] != '█')
