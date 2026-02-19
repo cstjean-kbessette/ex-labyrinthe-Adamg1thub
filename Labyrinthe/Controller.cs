@@ -40,7 +40,7 @@
                     labyrinthe.MoveLeft();
                 else if (choix == 'S')
                     labyrinthe.MoveDown();
-                else 
+                else if (choix == 'D')
                     labyrinthe.MoveRight();
             }            
         }
